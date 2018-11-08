@@ -1,0 +1,41 @@
+#!/bin/bash
+##Description : For install freeswitch1.8 on debian 9
+##Author : herbiel
+
+wget -O - https://files.freeswitch.org/repo/deb/freeswitch-1.8/fsstretch-archive-keyring.asc | apt-key add -
+
+echo "deb http://files.freeswitch.org/repo/deb/freeswitch-1.8/ jessie main" > /etc/apt/sources.list.d/freeswitch.list
+echo "deb-src http://files.freeswitch.org/repo/deb/freeswitch-1.8/ jessie main" >> /etc/apt/sources.list.d/freeswitch.list
+
+apt-get update
+
+# Install dependencies required for the build
+apt-get build-dep freeswitch
+
+# then let's get the source. Use the -b flag to get a specific branch
+cd /usr/src/
+git clone https://freeswitch.org/stash/scm/fs/freeswitch.git -bv1.8 freeswitch
+cd freeswitch
+
+# Because we're in a branch that will go through many rebases, it's
+# better to set this one, or you'll get CONFLICTS when pulling (update).
+git config pull.rebase true
+
+# ... and do the build
+./bootstrap.sh -j
+./configure
+make
+make install
+# Install audio files:
+make cd-sounds-install cd-moh-install
+
+# To update an installed build:
+cd /usr/src/freeswitch
+make current
+# Create link for freeswitch
+ln -s /usr/local/freeswitch/conf /etc/freeswitch
+ln -s /usr/local/freeswitch/log /var/log/freeswitch
+ln -s /usr/local/freeswitch/bin/freeswitch /usr/local/bin/freeswitch
+ln -s /usr/local/freeswitch/bin/fs_cli /usr/local/bin/fs_cli
+# set chmod for freeswitch and start quick script
+chmod -R freeswitch:daemon /usr/local/freeswitch
