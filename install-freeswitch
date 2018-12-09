@@ -38,4 +38,4 @@ ln -s /usr/local/freeswitch/log /var/log/freeswitch
 ln -s /usr/local/freeswitch/bin/freeswitch /usr/local/bin/freeswitch
 ln -s /usr/local/freeswitch/bin/fs_cli /usr/local/bin/fs_cli
 # set chmod for freeswitch and start quick script
-chmod -R freeswitch:daemon /usr/local/freeswitch
+chown -R freeswitch:daemon /usr/local/freeswitch
