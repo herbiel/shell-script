@@ -2,6 +2,7 @@
 #Description : For Install Zabbix4.0 on centos7.5
 ##Author : herbiel
 
+setenforce 0
 yum install wget -y
 #Set YUM Repository
 wget -O CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
