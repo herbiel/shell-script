@@ -1,0 +1,24 @@
+[Unit]
+Description=FreeSWITCH
+Documentation=
+After=network.target
+
+[Service]
+Type=forking
+PIDFile=/usr/local/freeswitch/run/freeswitch.pid
+#Environment=PATH=/usr/bin:/usr/local/bin/
+ExecStart=/usr/local/freeswitch/bin/freeswitch -ncwait
+User=freeswitch
+Restart=always
+LimitCORE=infinity
+LimitNOFILE=100000
+LimitNPROC=60000
+;LimitSTACK=240
+LimitRTPRIO=infinity
+LimitRTTIME=7000000
+IOSchedulingClass=realtime
+IOSchedulingPriority=2
+CPUSchedulingPolicy=rr
+CPUSchedulingPriority=89
+[Install]
+WantedBy=multi-user.target
