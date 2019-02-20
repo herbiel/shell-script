@@ -1,0 +1,3 @@
+由于signalwire-client-c 不能安装
+fs阿里云上安装需要安装以下依赖然后手动编译
+apt-get install autoconf libtool-bin libpq-dev openssl-dev libpq-dev  libpcre++-dev libspeexdsp-dev libldns-dev libedit-dev libtiff-dev
