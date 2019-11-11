@@ -29,6 +29,7 @@ make install
 # Install audio files:
 make cd-sounds-install cd-moh-install
 
+adduser freeswitch --disabled-password --quiet --system --home /usr/local/freeswitch
 # To update an installed build:
 cd /usr/src/freeswitch
 make current
