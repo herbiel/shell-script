@@ -34,6 +34,7 @@ adduser freeswitch --disabled-password --quiet --system --home /usr/local/freesw
 cd /usr/src/freeswitch
 make current
 # Create link for freeswitch
+wget https://raw.githubusercontent.com/herbiel/pubilc-shell/master/freeswitch.service -P /lib/systemd/system/
 ln -s /usr/local/freeswitch/conf /etc/freeswitch
 ln -s /usr/local/freeswitch/log /var/log/freeswitch
 ln -s /usr/local/freeswitch/bin/freeswitch /usr/local/bin/freeswitch
