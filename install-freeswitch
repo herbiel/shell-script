@@ -23,7 +23,7 @@ git config pull.rebase true
 
 # ... and do the build
 ./bootstrap.sh -j
-./configure
+./configure --enable-system-lua --without-pgsql --prefix=/usr/local/freeswitch --sysconfdir=/etc --localstatedir=/var --datadir=/usr/share
 make
 make install
 # Install audio files:
@@ -35,9 +35,11 @@ cd /usr/src/freeswitch
 make current
 # Create link for freeswitch
 wget https://raw.githubusercontent.com/herbiel/pubilc-shell/master/freeswitch.service -P /lib/systemd/system/
-ln -s /usr/local/freeswitch/conf /etc/freeswitch
-ln -s /usr/local/freeswitch/log /var/log/freeswitch
-ln -s /usr/local/freeswitch/bin/freeswitch /usr/local/bin/freeswitch
-ln -s /usr/local/freeswitch/bin/fs_cli /usr/local/bin/fs_cli
+chown -R freeswitch:daemon /usr/local/freeswitch
+chown -R freeswitch:daemon /etc/freeswitch
+chown -R freeswitch:daemon /var/lib/freeswitch
+chown -R freeswitch:daemon /usr/share/freeswitch
+chown -R freeswitch:daemon /var/run/freeswitch
+chown -R freeswitch:daemon /var/log/freeswitch
 # set chmod for freeswitch and start quick script
 chown -R freeswitch:daemon /usr/local/freeswitch
