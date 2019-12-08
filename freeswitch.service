@@ -5,9 +5,9 @@ After=network.target
 
 [Service]
 Type=forking
-PIDFile=/usr/local/freeswitch/run/freeswitch.pid
+PIDFile=/var/run/freeswitch/freeswitch.pid
 #Environment=PATH=/usr/bin:/usr/local/bin/
-ExecStart=/usr/local/freeswitch/bin/freeswitch -ncwait
+ExecStart=/usr/local/bin/freeswitch -ncwait
 User=freeswitch
 Restart=always
 LimitCORE=infinity
