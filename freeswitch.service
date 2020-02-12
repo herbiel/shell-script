@@ -1,14 +1,17 @@
 [Unit]
 Description=FreeSWITCH
 Documentation=
-After=network.target
+After=After=syslog.target network.target local-fs.target
 
 [Service]
 Type=forking
 PIDFile=/var/run/freeswitch/freeswitch.pid
 #Environment=PATH=/usr/bin:/usr/local/bin/
-ExecStart=/usr/local/bin/freeswitch -ncwait
-User=freeswitch
+ExecStartPre=/bin/mkdir -p /var/run/freeswitch/
+ExecStartPre=/bin/chown -R freeswitch:daemon /var/run/freeswitch/
+ExecStart=/usr/local/bin/freeswitch -u freeswitch -g daemon -ncwait
+User=root
+Group=daemon
 Restart=always
 LimitCORE=infinity
 LimitNOFILE=100000
