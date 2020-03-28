@@ -14,7 +14,7 @@ apt-get build-dep freeswitch
 
 # then let's get the source. Use the -b flag to get a specific branch
 cd /usr/src/
-git clone https://freeswitch.org/stash/scm/fs/freeswitch.git -bv1.8 freeswitch
+git clone https://github.com/signalwire/freeswitch.git -bv1.8 freeswitch
 cd freeswitch
 
 # Because we're in a branch that will go through many rebases, it's
