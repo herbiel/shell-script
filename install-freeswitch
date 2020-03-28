@@ -2,13 +2,13 @@
 ##Description : For install freeswitch1.8 on debian 9
 ##Author : herbiel
 
-wget -O - https://files.freeswitch.org/repo/deb/freeswitch-1.8/fsstretch-archive-keyring.asc | apt-key add -
-
-echo "deb http://files.freeswitch.org/repo/deb/freeswitch-1.8/ jessie main" > /etc/apt/sources.list.d/freeswitch.list
-echo "deb-src http://files.freeswitch.org/repo/deb/freeswitch-1.8/ jessie main" >> /etc/apt/sources.list.d/freeswitch.list
-
+wget -O - https://files.freeswitch.org/repo/deb/debian-release/fsstretch-archive-keyring.asc | apt-key add -
+ 
+echo "deb http://files.freeswitch.org/repo/deb/debian-release/ stretch main" > /etc/apt/sources.list.d/freeswitch.list
+echo "deb-src http://files.freeswitch.org/repo/deb/debian-release/ stretch main" >> /etc/apt/sources.list.d/freeswitch.list
+ 
 apt-get update
-
+  
 # Install dependencies required for the build
 apt-get build-dep freeswitch
 
